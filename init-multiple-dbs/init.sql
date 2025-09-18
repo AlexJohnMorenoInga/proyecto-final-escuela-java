@@ -1,0 +1,3 @@
+CREATE DATABASE ordendb;
+CREATE DATABASE productodb;
+CREATE DATABASE stockdb;
