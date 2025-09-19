@@ -1,3 +1,3 @@
-CREATE DATABASE ordendb;
-CREATE DATABASE productodb;
-CREATE DATABASE stockdb;
+CREATE DATABASE clientedb;
+CREATE DATABASE prestamodb;
+CREATE DATABASE pagodb;

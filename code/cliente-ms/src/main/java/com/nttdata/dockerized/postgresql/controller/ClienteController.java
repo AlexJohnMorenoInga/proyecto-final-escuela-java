@@ -1,5 +1,6 @@
 package com.nttdata.dockerized.postgresql.controller;
 
+import com.nttdata.dockerized.postgresql.model.dto.ClienteDTO;
 import com.nttdata.dockerized.postgresql.model.dto.GuardarClienteRequestDTO;
 import com.nttdata.dockerized.postgresql.model.dto.GuardarClienteResponseDTO;
 import com.nttdata.dockerized.postgresql.model.entity.Cliente;
@@ -27,6 +28,24 @@ public class ClienteController {
         Cliente clienteGuardado = clienteService.guardarCliente(idTipoDocumento, INSTANCE.toClienteEntity(guardarClienteDTO));
 
         return new ResponseEntity<>(INSTANCE.toGuardarClienteResponseDTO(clienteGuardado), HttpStatus.CREATED);
+
+    }
+
+    @GetMapping("/{idCliente}")
+    public ResponseEntity<Cliente> traerClientePorId(@PathVariable(value = "idCliente") Long idCliente){
+
+        Cliente cliente = clienteService.traerClientePorId(idCliente);
+
+        return new ResponseEntity<>(cliente, HttpStatus.OK);
+
+    }
+
+    @GetMapping("/numero_documento/{numeroDocumento}")
+    public ResponseEntity<Cliente> traerClientePorNumeroDocumento(@PathVariable(value = "numeroDocumento") String numeroDocumento){
+
+         Cliente cliente= clienteService.traerClientePorNumeroDocumento(numeroDocumento);
+
+        return new ResponseEntity<>(cliente, HttpStatus.OK);
 
     }
 

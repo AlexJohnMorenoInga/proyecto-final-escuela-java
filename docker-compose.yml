@@ -41,11 +41,11 @@ services:
       - backend
 
   # ---------- Microservicios ----------
-  producto-ms:
-    build: ./code/producto-ms
-    container_name: producto-ms
+  cliente-ms:
+    build: ./code/cliente-ms
+    container_name: cliente-ms
     environment:
-      DATABASE_URL: jdbc:postgresql://postgres:5432/productodb
+      DATABASE_URL: jdbc:postgresql://postgres:5432/clientedb
       DATABASE_USERNAME: postgres
       DATABASE_PASSWORD: postgres
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
@@ -57,44 +57,37 @@ services:
     networks:
       - backend
 
-  orden-ms:
-    build: ./code/orden-ms
-    container_name: orden-ms
+  prestamo-ms:
+    build: ./code/prestamo-ms
+    container_name: prestamo-ms
     environment:
-      DATABASE_URL: jdbc:postgresql://postgres:5432/ordendb
+      DATABASE_URL: jdbc:postgresql://postgres:5432/prestamodb
       DATABASE_USERNAME: postgres
       DATABASE_PASSWORD: postgres
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
     ports:
-      - "8081:8080"
+      - "8081:8081"
     depends_on:
       - postgres
       - eureka-server
+      - cliente-ms
     networks:
       - backend
 
-  stock-ms:
-    build: ./code/stock-ms
-    container_name: stock-ms
+  pago-ms:
+    build: ./code/pago-ms
+    container_name: pago-ms
     environment:
-      DATABASE_URL: jdbc:postgresql://postgres:5432/stockdb
+      DATABASE_URL: jdbc:postgresql://postgres:5432/pagodb
       DATABASE_USERNAME: postgres
       DATABASE_PASSWORD: postgres
     ports:
       - "8095:8095"
     depends_on:
       - postgres
-    networks:
-      - backend
-
-  composition-order:
-    build: ./code/composition-order
-    container_name: composition-order
-    ports:
-      - "8091:8091"
-    depends_on:
       - eureka-server
-      - orden-ms
+      - cliente-ms
+      - prestamo-ms
     networks:
       - backend
 

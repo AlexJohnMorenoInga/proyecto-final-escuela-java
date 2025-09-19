@@ -81,6 +81,27 @@ public class ClienteServiceImpl implements ClienteService{
         return clienteGuardado;
     }
 
+    @Override
+    public Cliente traerClientePorId(Long idCliente) {
+        // Buscar al cliente por id
+        Cliente cliente = clienteRepository.findById(idCliente).orElseThrow(
+                () -> new ResourceNotFoundException("El cliente indicado no existe")
+        );
+        // Devolver al cliente encontrado
+        return cliente;
+    }
+
+    @Override
+    public Cliente traerClientePorNumeroDocumento(String numeroDocumento) {
+        // Buscar al cliente por numero de documento de identidad
+        Cliente cliente = clienteRepository.findClienteByNumeroDocumento(numeroDocumento).orElseThrow(
+                () -> new ResourceNotFoundException("No existe un cliente con el número de documento de identidad indicado")
+        );
+        // Devolver al cliente encontrado
+        return cliente;
+    }
+
+
     private boolean isValidNombreApellido(String nombre) {
         return nombre != null && nombre.matches(NOMBRE_APELLIDO_REGEX);
     }

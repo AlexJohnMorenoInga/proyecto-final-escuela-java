@@ -97,6 +97,8 @@
     <modules>
         <module>code/eureka-server</module>
         <module>code/cliente-ms</module>
+        <module>code/prestamo-ms</module>
+        <module>code/pago-ms</module>
     </modules>
 </project>
 

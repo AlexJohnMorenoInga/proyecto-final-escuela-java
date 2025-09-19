@@ -13,6 +13,8 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
         </processorPath>
         <module name="dockerized.postgresql" />
+        <module name="prestamo-ms" />
+        <module name="pago-ms" />
         <module name="cliente-ms" />
         <module name="eureka-server" />
       </profile>

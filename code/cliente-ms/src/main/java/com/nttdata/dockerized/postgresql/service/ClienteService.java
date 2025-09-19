@@ -6,4 +6,8 @@ public interface ClienteService {
 
     Cliente guardarCliente(Long idTipoDocumento, Cliente cliente);
 
+    Cliente traerClientePorId(Long idCliente);
+
+    Cliente traerClientePorNumeroDocumento(String numeroDocumento);
+
 }
