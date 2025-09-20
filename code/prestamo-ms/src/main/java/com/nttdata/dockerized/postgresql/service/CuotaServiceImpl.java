@@ -51,11 +51,15 @@ public class CuotaServiceImpl implements CuotaService{
         List<Cuota> cuotaList = StreamSupport.stream(cuotas.spliterator(), false).collect(Collectors.toList());
         // Extraer las cuotas pendientes
         List<Cuota> cuotasPendientes = new ArrayList<>();
+        // Optimizacion con stream
+        cuotasPendientes = cuotaList.stream().filter(cuota -> !cuota.getEstado()).collect(Collectors.toList());
+        /*
         for(Cuota cuota:cuotaList){
             if(!cuota.getEstado()){
                 cuotasPendientes.add(cuota);
             }
         }
+         */
         // Validar que existan cuotas pendientes
         if(cuotasPendientes.isEmpty()){
             throw  new ResourceNotFoundException("No hay cuotas pendientes");
